@@ -1,0 +1,21 @@
+{
+    "firstName": "KIRAN",
+    "lastName": "KALYAN",
+    "password": "ggH@rise",
+    "DOB": {
+        "day": "12",
+        "month": "8",
+        "year": "1997"
+    },
+    "Address": {
+        "addressFirstName": "KIRAN",
+        "addressLastName": "KALYAN",
+        "address": "Not far from Earth",
+        "city": "madanapalle",
+        "state": "1",
+        "zipcode": "00000",
+        "country": "United States",
+        "mobileNumber": "7032122578",
+        "aliasAddress": "between Mars and Earth"
+    }
+}
