@@ -7,7 +7,7 @@ import shippingPage from "../pageobjects/shipping.Page";
 import shoppingCartSummaryPage from "../pageobjects/shoppingCartSummary.Page";
 import signInPage from "../pageobjects/signIn.Page";
 import signUpPage from "../pageobjects/signUp.Page";
-import signup from "../testData/signUp.json"
+import signup from "../testData/myStore.json"
 import randomData from "faker"
 import womenSectionPage from "../pageobjects/womenSection.Page";
 
@@ -26,7 +26,7 @@ When(/^I enter email address it should create account$/, async () => {
 When(/^I click on create an account button$/, async () => {
     await signInPage.ClickOnCreateAccountButton.click();
 });
-Then(/^I should navigate and see the heading as Your Personal Information$/, async () => {
+Then(/^I should navigate and see text as Your Personal Information$/, async () => {
     await expect(signUpPage.pageHeading).toHaveText("YOUR PERSONAL INFORMATION");
 });
 When(/^I enter the data in all fields as$/, async () => {
@@ -72,7 +72,7 @@ Then(/^I should navigate and see the message as My Account$/, async () => {
     await expect(myAccountPage.myAccountText).toHaveText("MY ACCOUNT");
 });
 When(/^I click on women section button$/, async () => {
-    await myAccountPage.clickOnWomenSection.click();
+    await myAccountPage.clickingOnWomenSection.click();
 });
 Then(/^I should see the text under women section as SubCategories$/, async () => {
     await expect(womenSectionPage.subCategories).toHaveText("Subcategories");
@@ -81,18 +81,18 @@ When(/^I perform the actions to add the product into the cart$/, async () => {
     await womenSectionPage.hoverOnProduct.scrollIntoView();
     await womenSectionPage.addToCartButton.click();
 });
-Then(/^I should see a popup message product successfully added to cart message$/, async () => {
+Then(/^I should see a popup message product successfully added$/, async () => {
     await expect(womenSectionPage.addToCartMessage).toHaveText("Product successfully added to your shopping cart");
 });
 When(/^I click on Proceed to CheckoutButton$/, async () => {
     await womenSectionPage.clickOnProceedToCartButton.click();
 });
-Then(/^I navigate and validate the Shopping Cart Summary Page details$/, async () => {
-    await expect(shoppingCartSummaryPage.shoppingCartSummaryText).toHaveText("SHOPPING-CART SUMMARY");
-    await expect(shoppingCartSummaryPage.productDetailsChecking).toHaveText('Faded Short Sleeve T-shirts');
-    await expect(shoppingCartSummaryPage.totalPrice).toHaveText('$18.51');
-    await expect(shoppingCartSummaryPage.deliveryAddress).toHaveText('DELIVERY ADDRESS (MY ADDRESSFRGBFSDB)');
-    await expect(shoppingCartSummaryPage.invoiceAddress).toHaveText('INVOICE ADDRESS (MY ADDRESSFRGBFSDB)');
+Then(/^I navigate and validate the Shopping Cart Page details$/, async () => {
+    await expect(shoppingCartSummaryPage.shoppingCartSummaryText).toHaveTextContaining("SHOPPING-CART SUMMARY");
+    await expect(shoppingCartSummaryPage.checkingProductName).toHaveTextContaining('Faded Short Sleeve T-shirts');
+    await expect(shoppingCartSummaryPage.productPrice).toHaveTextContaining('$');
+    await expect(shoppingCartSummaryPage.deliveryAddress).toHaveTextContaining('DELIVERY ADDRESS');
+    await expect(shoppingCartSummaryPage.invoiceAddress).toHaveTextContaining('INVOICE ADDRESS');
 });
 When(/^I click on Proceed to checkout button for shopping cart$/, async () => {
     await shoppingCartSummaryPage.productProceedToCheckOut.click();
@@ -104,24 +104,28 @@ Then(/^I navigate to Addresses Page and validate the details$/, async () => {
     await expect(addressPage.billingAddress).toHaveText('YOUR BILLING ADDRESS')
 });
 When(/^I choose address from list and clink on Checkout button$/, async () => {
-    await addressPage.addressDropDownList.selectByAttribute('value', 607301);
-    await addressPage.checkOutButton.click();
+    await addressPage.addressDropDownList.selectByVisibleText("between Mars and Earth");
+    await addressPage.clickOnCheckOutButton.click();
 });
 Then(/^I navigate to next page and validate shipping details$/, async () => {
-    await expect(shippingPage.shippingText).toHaveText("SHIPPING");
-    await expect(shippingPage.checkBoxTitle).toHaveText("Terms of service")
+    await expect(shippingPage.shippingHeaderText).toHaveText("SHIPPING");
+    await expect(shippingPage.checkBoxText).toHaveText("Terms of service")
 });
 When(/^I select the check box and proceed to check out$/, async () => {
-    await shippingPage.selectingCheckBox.selectByAttribute('value', 1);
+    await shippingPage.selectingCheckBox.click();
     await shippingPage.proceedToCheckOutButton.click();
 });
-Then(/^I should be navigated and validate the payments page and then Navigate to bank wire payment page$/, async () => {
+Then(/^I should be navigated and validate payments page$/, async () => {
     await expect(paymentsPage.choosePaymentMethodText).toHaveText("PLEASE CHOOSE YOUR PAYMENT METHOD");
+});
+When(/^I click on the payment type button$/, async () => {
+    await paymentsPage.choosePaymentType.click();
+});
+Then(/^I should be navigate and validate the bankwire payment page$/, async () => {
     await expect(paymentsPage.orderSummaryText).toHaveText("ORDER SUMMARY")
     await expect(paymentsPage.bankWireText).toHaveText("BANK-WIRE PAYMENT.");
 });
-When(/^I click the payment method and I should navigated to confirm order$/, async () => {
-    await paymentsPage.selectingPaymentsOptions.click();
+When(/^I click on navigated to I confirm my order$/, async () => {
     await paymentsPage.clickOnConfirmOrderButton.click();
 });
 Then(/^I navigate and validate the order confirmation page$/, async () => {

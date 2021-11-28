@@ -16,9 +16,9 @@ class SignUpPage {
     get addressFirstNameText() { return $('//label[@for="firstname"]'); }
     get addressFirstName() { return $('//input[@id="firstname"]') }
     get addressLastnameText() { return $('//label[@for="lastname"]'); }
+    get addressLastName() { return $('//input[@id="lastname"]') }
     get companyText() { return $('//label[@for="company"]') }
     get companyName() { return $('#company') }
-    get addressLastName() { return $('//input[@id="lastname"]') }
     get addressText() { return $('//label[@for="address1"]') }
     get address() { return $('#address1') }
     get cityText() { return $('//label[@for="city"]'); }
