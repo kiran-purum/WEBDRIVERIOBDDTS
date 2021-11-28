@@ -3,24 +3,25 @@ Feature: Create Account in AutomationPractice
     Scenario: Testing SignUP Page of the AutomationPractice
         Given This is the Home Page of MyStore
         When I Click on Sign in
-        Then I should see the Text as "CREATE AN ACCOUNT"
+        Then I should see the Text as create an account
         When I enter email address it should create account
         When I click on create an account button
-        Then I should navigate and see the heading as "YOUR PERSONAL INFORMATION"
+        Then I should navigate and see the heading as Your Personal Information
         When I enter the data in all fields as
-        Then I see the text as "First name *"
-        Then I should the text as "Last name *"
-        Then I will see the text as "Password *"
-        Then I should see the next Text as "Date of Birth"
-        Then I am able to see the Next form Name as "YOUR ADDRESS"
-        Then I should see the Address form first Text as "First name *"
-        Then I can see the address form text as "Last name *"
-        Then I am able to see the address text as "Address *"
-        Then I see the city field in the address form as "City *"
-        Then I Should see the State field in the address field as "State *"
-        Then I should see the zip postal code in the address field "Zip/Postal Code *"
-        Then I see the country field in the address form as "Country *"
-        Then I should see the text for mobile phone number in the address form as "Mobile phone *"
-        Then I see the last adress field as "Assign an address alias for future reference. *"
+        Then I validate text of each and every mandatory field
         When I click on the Register Button
-        Then I should be navigated to another page and can see the text as "MY ACCOUNT"
+        Then I should navigate and see the message as My Account
+        When I click on women section button
+        Then I should see the text under women section as SubCategories
+        When I perform the actions to add the product into the cart
+        Then I should see a popup message product successfully added to cart message
+        When I click on Proceed to CheckoutButton
+        Then I navigate and validate the Shopping Cart Summary Page details
+        When I click on Proceed to checkout button for shopping cart
+        Then I navigate to Addresses Page and validate the details
+        When I choose address from list and clink on Checkout button
+        Then I navigate to next page and validate shipping details
+        When I select the check box and proceed to check out
+        Then I should be navigated and validate the payments page and then Navigate to bank wire payment page
+        When I click the payment method and I should navigated to confirm order
+        Then I navigate and validate the order confirmation page
