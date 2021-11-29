@@ -10,9 +10,10 @@ import signUpPage from "../pageobjects/signUp.Page";
 import signup from "../testData/myStore.json"
 import randomData from "faker"
 import womenSectionPage from "../pageobjects/womenSection.Page";
+import validationdata from "../assertionData/validationData.json"
 
 Given(/^This is the Home Page of MyStore$/, async () => {
-    await signInPage.homePageLink()
+    await signInPage.homePageLink();
 });
 When(/^I Click on Sign in$/, async () => {
     await signInPage.clickOnSIgnIn.click();
@@ -49,86 +50,86 @@ When(/^I enter the data in all fields as$/, async () => {
     await signUpPage.aliasAddress.setValue(signup.Address.aliasAddress);
 });
 Then(/^I validate text of each and every mandatory field$/, async () => {
-    await expect(signUpPage.firstnameText).toHaveText("First name *");
-    await expect(signUpPage.lastnameText).toHaveText("Last name *");
-    await expect(signUpPage.passwordText).toHaveText("Password *");
-    await expect(signUpPage.dateOfBirthText).toHaveText("Date of Birth");
-    await expect(signUpPage.yourAddressText).toHaveText("YOUR ADDRESS");
-    await expect(signUpPage.addressFirstNameText).toHaveText("First name *");
-    await expect(signUpPage.addressLastnameText).toHaveText("Last name *");
-    await expect(signUpPage.companyText).toHaveText("Company")
-    await expect(signUpPage.addressText).toHaveText("Address *");
-    await expect(signUpPage.cityText).toHaveText("City *")
-    await expect(signUpPage.stateText).toHaveText("State *");
-    await expect(signUpPage.zipPostalCodeText).toHaveText("Zip/Postal Code *");
-    await expect(signUpPage.countryText).toHaveText("Country *");
-    await expect(signUpPage.mobileNumberText).toHaveText("Mobile phone *");
-    await expect(signUpPage.aliasAddressText).toHaveText("Assign an address alias for future reference. *");
+    await expect(signUpPage.firstnameText).toHaveText(validationdata.firstname);
+    await expect(signUpPage.lastnameText).toHaveText(validationdata.lastname);
+    await expect(signUpPage.passwordText).toHaveText(validationdata.password);
+    await expect(signUpPage.dateOfBirthText).toHaveText(validationdata.dateOfBirth);
+    await expect(signUpPage.yourAddressText).toHaveText(validationdata.yourAddress);
+    await expect(signUpPage.addressFirstNameText).toHaveText(validationdata.addressFirstName);
+    await expect(signUpPage.addressLastnameText).toHaveText(validationdata.addressLastName);
+    await expect(signUpPage.companyText).toHaveText(validationdata.company)
+    await expect(signUpPage.addressText).toHaveText(validationdata.address1);
+    await expect(signUpPage.cityText).toHaveText(validationdata.city)
+    await expect(signUpPage.stateText).toHaveText(validationdata.state);
+    await expect(signUpPage.zipPostalCodeText).toHaveText(validationdata.zipCode);
+    await expect(signUpPage.countryText).toHaveText(validationdata.country);
+    await expect(signUpPage.mobileNumberText).toHaveText(validationdata.mobileNumber);
+    await expect(signUpPage.aliasAddressText).toHaveText(validationdata.aliasAddress);
 });
 When(/^I click on the Register Button$/, async () => {
     await signUpPage.registerButton.click();
 });
 Then(/^I should navigate and see the message as My Account$/, async () => {
-    await expect(myAccountPage.myAccountText).toHaveText("MY ACCOUNT");
+    await expect(myAccountPage.myAccountText).toHaveText(validationdata.myaccount);
 });
 When(/^I click on women section button$/, async () => {
     await myAccountPage.clickingOnWomenSection.click();
 });
 Then(/^I should see the text under women section as SubCategories$/, async () => {
-    await expect(womenSectionPage.subCategories).toHaveText("Subcategories");
+    await expect(womenSectionPage.subCategories).toHaveText(validationdata.subcatagories);
 });
 When(/^I perform the actions to add the product into the cart$/, async () => {
     await womenSectionPage.hoverOnProduct.scrollIntoView();
     await womenSectionPage.addToCartButton.click();
 });
 Then(/^I should see a popup message product successfully added$/, async () => {
-    await expect(womenSectionPage.addToCartMessage).toHaveText("Product successfully added to your shopping cart");
+    await expect(womenSectionPage.succesfullyAddedToCart).toHaveText(validationdata.ProductAddedToCart);
 });
 When(/^I click on Proceed to CheckoutButton$/, async () => {
     await womenSectionPage.clickOnProceedToCartButton.click();
 });
 Then(/^I navigate and validate the Shopping Cart Page details$/, async () => {
-    await expect(shoppingCartSummaryPage.shoppingCartSummaryText).toHaveTextContaining("SHOPPING-CART SUMMARY");
-    await expect(shoppingCartSummaryPage.checkingProductName).toHaveTextContaining('Faded Short Sleeve T-shirts');
-    await expect(shoppingCartSummaryPage.productPrice).toHaveTextContaining('$');
-    await expect(shoppingCartSummaryPage.deliveryAddress).toHaveTextContaining('DELIVERY ADDRESS');
-    await expect(shoppingCartSummaryPage.invoiceAddress).toHaveTextContaining('INVOICE ADDRESS');
+    await expect(shoppingCartSummaryPage.shoppingCartSummaryText).toHaveTextContaining(validationdata.shoppingCartSummary);
+    await expect(shoppingCartSummaryPage.checkingProductName).toHaveTextContaining(validationdata.productName);
+    await expect(shoppingCartSummaryPage.productPrice).toHaveTextContaining(validationdata.totalPrice);
+    await expect(shoppingCartSummaryPage.deliveryAddress).toHaveTextContaining(validationdata.deliveryAddress);
+    await expect(shoppingCartSummaryPage.invoiceAddress).toHaveTextContaining(validationdata.invoiceAddress);
 });
 When(/^I click on Proceed to checkout button for shopping cart$/, async () => {
-    await shoppingCartSummaryPage.productProceedToCheckOut.click();
+    await shoppingCartSummaryPage.clickOnProceedToCheckOut.click();
 });
 Then(/^I navigate to Addresses Page and validate the details$/, async () => {
-    await expect(addressPage.addressText).toHaveText('ADDRESSES');
-    await expect(addressPage.chooseDeliveryOption).toHaveText('Choose a delivery address:');
-    await expect(addressPage.deliveryAddress).toHaveText('YOUR DELIVERY ADDRESS');
-    await expect(addressPage.billingAddress).toHaveText('YOUR BILLING ADDRESS')
+    await expect(addressPage.addressText).toHaveText(validationdata.addressHeader);
+    await expect(addressPage.chooseDeliveryOption).toHaveText(validationdata.deliverLocation);
+    await expect(addressPage.deliveryAddress).toHaveText(validationdata.yourDeliverAddress);
+    await expect(addressPage.billingAddress).toHaveText(validationdata.yourBillinAddress)
 });
 When(/^I choose address from list and clink on Checkout button$/, async () => {
-    await addressPage.addressDropDownList.selectByVisibleText("between Mars and Earth");
+    await addressPage.addressDropDownList.selectByVisibleText(validationdata.addressList);
     await addressPage.clickOnCheckOutButton.click();
 });
 Then(/^I navigate to next page and validate shipping details$/, async () => {
-    await expect(shippingPage.shippingHeaderText).toHaveText("SHIPPING");
-    await expect(shippingPage.checkBoxText).toHaveText("Terms of service")
+    await expect(shippingPage.shippingHeaderText).toHaveText(validationdata.shippingHeader);
+    await expect(shippingPage.checkBoxText).toHaveText(validationdata.termsOfService)
 });
 When(/^I select the check box and proceed to check out$/, async () => {
     await shippingPage.selectingCheckBox.click();
     await shippingPage.proceedToCheckOutButton.click();
 });
 Then(/^I should be navigated and validate payments page$/, async () => {
-    await expect(paymentsPage.choosePaymentMethodText).toHaveText("PLEASE CHOOSE YOUR PAYMENT METHOD");
+    await expect(paymentsPage.choosePaymentMethodText).toHaveText(validationdata.pleaseChoosePaymentType);
 });
 When(/^I click on the payment type button$/, async () => {
     await paymentsPage.choosePaymentType.click();
 });
 Then(/^I should be navigate and validate the bankwire payment page$/, async () => {
-    await expect(paymentsPage.orderSummaryText).toHaveText("ORDER SUMMARY")
-    await expect(paymentsPage.bankWireText).toHaveText("BANK-WIRE PAYMENT.");
+    await expect(paymentsPage.orderSummaryText).toHaveText(validationdata.orderSummary)
+    await expect(paymentsPage.bankWireText).toHaveText(validationdata.bankWirePayment);
 });
 When(/^I click on navigated to I confirm my order$/, async () => {
     await paymentsPage.clickOnConfirmOrderButton.click();
 });
 Then(/^I navigate and validate the order confirmation page$/, async () => {
-    await expect(orderConfirmationPage.orderConfirmationText).toHaveText("ORDER CONFIRMATION");
-    await expect(orderConfirmationPage.orderConfirmDetailsText).toHaveText("Your order on My Store is complete.")
+    await expect(orderConfirmationPage.orderConfirmationText).toHaveText(validationdata.orderConfirmation);
+    await expect(orderConfirmationPage.orderConfirmDetailsText).toHaveText(validationdata.orderConfirmationDetails)
 });

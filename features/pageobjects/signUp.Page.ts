@@ -1,9 +1,10 @@
+import myStore from "../testdata/myStore.json"
 class SignUpPage {
 
     get pageHeading() { return $("//*[@id='account-creation_form']/div[1]/h3") }
     get radioButton() { return $("#id_gender1"); }
     get firstnameText() { return $("//label[@for='customer_firstname']"); }
-    get firstName() { return $("//input[@id='customer_firstname']") }
+    get firstName() { return $("//input[@id='customer_firstname']") } 
     get lastnameText() { return $("//label[@for='customer_lastname']"); }
     get lastname() { return $("//input[@id='customer_lastname']") }
     get passwordText() { return $("//label[@for='passwd']"); }

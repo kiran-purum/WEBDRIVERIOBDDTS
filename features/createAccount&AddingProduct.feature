@@ -1,6 +1,6 @@
-Feature: Create Account in AutomationPractice
+Feature: Creating Account in AutomationPractice
 
-    Scenario: Testing SignUP Page of the AutomationPractice
+    Scenario: Testing Create Account and SignUP Product adding to Cart Page of the AutomationPractice
         Given This is the Home Page of MyStore
         When I Click on Sign in
         Then I should see the Text as create an account
