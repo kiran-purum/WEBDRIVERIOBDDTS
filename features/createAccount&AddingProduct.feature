@@ -11,6 +11,9 @@ Feature: Creating Account in AutomationPractice
         Then I validate text of each and every mandatory field
         When I click on the Register Button
         Then I should navigate and see the message as My Account
+
+
+    Scenario: Testing Adding Product To Cart and Ordering Page of the AutomationPractice
         When I click on women section button
         Then I should see the text under women section as SubCategories
         When I perform the actions to add the product into the cart
