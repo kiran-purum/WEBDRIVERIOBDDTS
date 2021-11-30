@@ -1,4 +1,3 @@
-import myStore from "../testdata/myStore.json"
 class SignUpPage {
 
     get pageHeading() { return $("//*[@id='account-creation_form']/div[1]/h3") }
